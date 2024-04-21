@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: matchflick
+  datasource:
+    username: flick
+    password: flick
+    url: jdbc:postgresql://host.docker.internal:5432/matchflick
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  profiles:
+    include: api
+openapi:
+  service:
+    title: Matchflick
+    version: 1
+    url: /
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
+
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub
+matchflick:
+  access-token:
+    duration: ${ACCESS_TOKEN_DURATION:1H}
+  refresh-token:
+    duration: ${REFRESH_TOKEN_DURATION:1D}

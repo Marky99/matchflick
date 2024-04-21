@@ -1,0 +1,80 @@
+api:
+  profile:
+    session:
+      get:
+        title: Get current active session
+        detail: Endpoint for receiving current active session
+        start: Active session
+      put:
+        title: End current active session With user
+        detail: Endpoint for ending current active session by username
+        start: End session
+      title: Start current active session
+      detail: Endpoint for Starting current active session by username
+      start: Start session
+    genre:
+      get:
+        title: Get my genres by score desc
+        detail: Endpoint for getting genres sorted by score desc
+        start: Get my genres
+        all:
+          title: Get all available genres
+          detail: Endpoint for getting all genres
+          start: Get all genres
+    assign:
+      title: Assign genres to your profile
+      detail: Assign genres to your profile
+      start: Assign genres to your profile
+    matches:
+      get:
+        title: Get all my matches
+        detail: Endpoint for getting all positive matches that were made
+        start: Get all my matches
+    friends:
+      get:
+        title: See friends i had positive matches with TDOD
+        detail: Not working
+        start: Not working
+  review:
+    last:
+      get:
+        title: Get last match to leave a review
+        detail: Endpoint for getting last matches entity to leave a review
+        start: Last matched entity
+      title: Leave a review on entity
+      detail: Endpoint for leaving a review on entity
+      start: Leave a review
+    get:
+      title: See my reviews
+      detail: Endpoint for retrieving reviews currently logged in user left
+      start: Retrieve reviews
+      id:
+        title: See review detail
+        detail: Endpoint for retrieving review detail by review id
+        start: Retrieve review
+  movie:
+    get:
+      title: Get random movie
+      detail: Get a completely random movie or movie from users favourite genres
+      start: Get a movie
+    post:
+      title: Post if like or dislike the selection
+      detail: Endpoint for leaving decision on selected movie
+      start: Make decision on movie
+    match:
+      title: See if there is a match in current session
+      detail: Endpoint for seeing if there is a match in current session, this happens if movie was labeled as true from both sides
+      start: See if match
+  auth:
+    registration:
+      title: Registration endpoint
+      detail: Endpoint for registering user
+      start: User registered
+    refresh:
+      title: Refresh endpoint
+      detail: Endpoint for refreshing expired access token
+      start: See if match
+    login:
+      title: Login endpoint
+      detail: Endpoint for login, generates access token, refresh token
+      start: User logged in

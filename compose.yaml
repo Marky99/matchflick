@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  local_sql_db:
+    image: postgres:16.2-alpine
+    container_name: local-sql-db
+    restart: always
+    environment:
+      POSTGRES_ROOT_PASSWORD: root
+      POSTGRES_DATABASE: matchflick
+      POSTGRES_USER: flick
+      POSTGRES_PASSWORD: flick
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      default: { }
+
+  matchflick:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: matchflick
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - local_sql_db
+    networks:
+      default: { }
+
+volumes:
+  postgres-data:
+
+networks:
+  default:
+    name: database

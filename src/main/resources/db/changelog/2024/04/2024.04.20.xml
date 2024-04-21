@@ -1,0 +1,249 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="2024.04.20.01" author="marek.valentiny" context="default">
+
+    <createTable tableName="profiles">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_profiles"
+          unique="true" uniqueConstraintName="un_profiles_id"
+          nullable="false"/>
+      </column>
+      <column name="username" type="varchar(128)">
+        <constraints unique="true" uniqueConstraintName="un_m_users_username" nullable="false"/>
+      </column>
+      <column name="password" type="varchar(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_login" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="current_session_id" type="uuid"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.02" author="marek.valentiny" context="default">
+
+    <createTable tableName="refresh_tokens">
+      <column name="token" type="text">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_refresh_token"
+          unique="true" uniqueConstraintName="un_refresh_token"
+          nullable="false"/>
+      </column>
+      <column name="expires" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile" type="uuid">
+        <constraints foreignKeyName="fk_refresh_token_profile" referencedTableName="profiles"
+          referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.03" author="marek.valentiny" context="default">
+
+    <createTable tableName="base_entities">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_base_entity"
+          unique="true" uniqueConstraintName="un_base_entities_id"
+          nullable="false"/>
+      </column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="varchar(765)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="category" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="publication_date" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="rating" type="float(4)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="duration" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="creator" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.04" author="marek.valentiny" context="default">
+
+    <createTable tableName="movies">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_base_entity_movie"
+          unique="true" uniqueConstraintName="un_base_entity_movie_id"
+          nullable="false"
+          foreignKeyName="fk_movie" referencedTableName="base_entities"
+          referencedColumnNames="id"/>
+      </column>
+      <column name="director" type="varchar(255)"/>
+      <column name="trailer_link" type="varchar(255)"/>
+      <column name="country_of_origin" type="varchar(255)"/>
+    </createTable>
+
+    <createTable tableName="movie_languages">
+      <column name="movie_id" type="uuid">
+        <constraints
+          primaryKeyName="pk_language_movie"
+          foreignKeyName="fk_movie_languages_movie_id"
+          referencedTableName="movies" referencedColumnNames="id"/>
+      </column>
+      <column name="language" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.05" author="marek.valentiny" context="default">
+
+    <createTable tableName="genres">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_genres"
+          unique="true" uniqueConstraintName="un_genres_id"
+          nullable="false"/>
+      </column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="varchar(765)"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.06" author="marek.valentiny" context="default">
+
+    <createTable tableName="matches">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_matches"
+          unique="true" uniqueConstraintName="un_matches_id"
+          nullable="false"/>
+      </column>
+      <column name="session_id" type="uuid">
+        <constraints nullable="false"/>
+      </column>
+      <column name="decision" type="boolean"/>
+      <column name="base_entity_id" type="uuid">
+        <constraints foreignKeyName="fk_base_entity_matches" referencedTableName="base_entities"
+          referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.07" author="marek.valentiny" context="default">
+
+    <createTable tableName="movies_genres">
+      <column name="movie_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_movie_genre_movie"
+          nullable="false"
+          foreignKeyName="fk_movie_genre_movie" referencedTableName="movies"
+          referencedColumnNames="id"/>
+      </column>
+
+      <column name="genre_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_movie_genre_genre"
+          nullable="false"
+          foreignKeyName="fk_movie_genre_genre" referencedTableName="genres"
+          referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.08" author="marek.valentiny" context="default">
+
+    <createTable tableName="profile_genre_matrices">
+      <column name="profile_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_profile_genre_matrices_profile"
+          nullable="false"
+          foreignKeyName="fk_profile_genre_matrices_profile" referencedTableName="profiles"
+          referencedColumnNames="id"/>
+      </column>
+
+      <column name="genre_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_profile_genre_matrices_genre"
+          nullable="false"
+          foreignKeyName="fk_profile_genre_matrices_genre" referencedTableName="genres"
+          referencedColumnNames="id"/>
+      </column>
+      <column name="score" type="float(4)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.09" author="marek.valentiny" context="default">
+
+    <createTable tableName="profile_matches">
+      <column name="profile_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_profile_matches_profile"
+          nullable="false"
+          foreignKeyName="fk_profile_matches_profile" referencedTableName="profiles"
+          referencedColumnNames="id"/>
+      </column>
+
+      <column name="match_id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_profile_matches_match"
+          nullable="false"
+          foreignKeyName="fk_profile_matches_match" referencedTableName="matches"
+          referencedColumnNames="id"/>
+      </column>
+      <column name="created_at" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="session_id" type="uuid">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2024.04.20.10" author="marek.valentiny" context="default">
+
+    <createTable tableName="reviews">
+      <column name="id" type="uuid">
+        <constraints
+          primaryKey="true" primaryKeyName="pk_reviews"
+          unique="true" uniqueConstraintName="un_reviews_id"
+          nullable="false"/>
+      </column>
+      <column name="score" type="float(4)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="title" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="varchar(765)">
+        <constraints nullable="false"/>
+      </column>
+
+      <column name="base_entity_id" type="uuid">
+        <constraints foreignKeyName="fk_base_entity_review" referencedTableName="base_entities"
+          referencedColumnNames="id"/>
+      </column>
+      <column name="profile_id" type="uuid">
+        <constraints foreignKeyName="fk_profile_review" referencedTableName="profiles"
+          referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,179 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="2024.04.21.01" author="marek.valentiny" context="default">
+    <insert tableName="base_entities">
+      <column name="id" value="6b1a5e6d-4268-4491-a5a2-4eba295830ff"/>
+      <column name="name" value="Comedy movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+    <insert tableName="base_entities">
+      <column name="id" value="6e648556-dfef-4df8-b4a9-7258ad7e572c"/>
+      <column name="name" value="Horror movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+    <insert tableName="base_entities">
+      <column name="id" value="8f890c8e-d9e7-48b3-9f85-4a83ba6c8e91"/>
+      <column name="name" value="Animated movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+    <insert tableName="base_entities">
+      <column name="id" value="b63c33ab-ebae-44c3-a3f5-b8a328153148"/>
+      <column name="name" value="Sci-fi Animated movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+    <insert tableName="base_entities">
+      <column name="id" value="f4008017-9557-43c1-b252-9b954e5a80ca"/>
+      <column name="name" value="Horror Thriller movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+    <insert tableName="base_entities">
+      <column name="id" value="1b2487d6-fbc1-4612-aafc-6d1ede078cfd"/>
+      <column name="name" value="Romantic comedy movie"/>
+      <column name="description" value="desc"/>
+      <column name="category" value="MOVIES"/>
+      <column name="publication_date" value="2024-04-21 11:48:12.000000"/>
+      <column name="rating" value="5"/>
+      <column name="duration" value="120"/>
+      <column name="creator" value="me"/>
+    </insert>
+  </changeSet>
+
+  <changeSet id="2024.04.21.02" author="marek.valentiny" context="default">
+    <insert tableName="genres">
+      <column name="id" value="5b08a26f-86fb-479b-aaf9-0f3ee961c7c3"/>
+      <column name="name" value="Animated"/>
+      <column name="description" value="desc"/>
+    </insert>
+    <insert tableName="genres">
+      <column name="id" value="e0293849-8ded-4eb4-a5ea-bed741fb8d3d"/>
+      <column name="name" value="Horror"/>
+      <column name="description" value="desc"/>
+    </insert>
+    <insert tableName="genres">
+      <column name="id" value="cfeda854-17e8-466b-aaf4-bbfce9fda25b"/>
+      <column name="name" value="Comedy"/>
+      <column name="description" value="desc"/>
+    </insert>
+    <insert tableName="genres">
+      <column name="id" value="d87b55f8-bb74-4418-a178-aaf0d7dc1184"/>
+      <column name="name" value="Sci-fi"/>
+      <column name="description" value="desc"/>
+    </insert>
+    <insert tableName="genres">
+      <column name="id" value="2e705ab5-b1b2-4d2a-a43a-569a28ba246f"/>
+      <column name="name" value="Romantic"/>
+      <column name="description" value="desc"/>
+    </insert>
+    <insert tableName="genres">
+      <column name="id" value="7394e64a-bd4e-4181-8481-a73f5fb9f824"/>
+      <column name="name" value="Thriller"/>
+      <column name="description" value="desc"/>
+    </insert>
+  </changeSet>
+
+  <changeSet id="2024.04.21.03" author="marek.valentiny" context="default">
+    <insert tableName="movies">
+      <column name="id" value="6b1a5e6d-4268-4491-a5a2-4eba295830ff"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+    <insert tableName="movies">
+      <column name="id" value="6e648556-dfef-4df8-b4a9-7258ad7e572c"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+    <insert tableName="movies">
+      <column name="id" value="8f890c8e-d9e7-48b3-9f85-4a83ba6c8e91"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+    <insert tableName="movies">
+      <column name="id" value="b63c33ab-ebae-44c3-a3f5-b8a328153148"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+    <insert tableName="movies">
+      <column name="id" value="f4008017-9557-43c1-b252-9b954e5a80ca"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+    <insert tableName="movies">
+      <column name="id" value="1b2487d6-fbc1-4612-aafc-6d1ede078cfd"/>
+      <column name="director" value="me"/>
+      <column name="trailer_link" value="https://www.youtube.com/"/>
+      <column name="country_of_origin" value="slovak"/>
+    </insert>
+  </changeSet>
+
+  <changeSet id="2024.04.21.04" author="marek.valentiny" context="default">
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="6b1a5e6d-4268-4491-a5a2-4eba295830ff"/>
+      <column name="genre_id" value="cfeda854-17e8-466b-aaf4-bbfce9fda25b"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="6e648556-dfef-4df8-b4a9-7258ad7e572c"/>
+      <column name="genre_id" value="e0293849-8ded-4eb4-a5ea-bed741fb8d3d"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="8f890c8e-d9e7-48b3-9f85-4a83ba6c8e91"/>
+      <column name="genre_id" value="5b08a26f-86fb-479b-aaf9-0f3ee961c7c3"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="b63c33ab-ebae-44c3-a3f5-b8a328153148"/>
+      <column name="genre_id" value="5b08a26f-86fb-479b-aaf9-0f3ee961c7c3"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="b63c33ab-ebae-44c3-a3f5-b8a328153148"/>
+      <column name="genre_id" value="d87b55f8-bb74-4418-a178-aaf0d7dc1184"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="f4008017-9557-43c1-b252-9b954e5a80ca"/>
+      <column name="genre_id" value="e0293849-8ded-4eb4-a5ea-bed741fb8d3d"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="f4008017-9557-43c1-b252-9b954e5a80ca"/>
+      <column name="genre_id" value="7394e64a-bd4e-4181-8481-a73f5fb9f824"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="1b2487d6-fbc1-4612-aafc-6d1ede078cfd"/>
+      <column name="genre_id" value="cfeda854-17e8-466b-aaf4-bbfce9fda25b"/>
+    </insert>
+    <insert tableName="movies_genres">
+      <column name="movie_id" value="1b2487d6-fbc1-4612-aafc-6d1ede078cfd"/>
+      <column name="genre_id" value="2e705ab5-b1b2-4d2a-a43a-569a28ba246f"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>
