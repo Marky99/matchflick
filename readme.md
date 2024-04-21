@@ -1,5 +1,8 @@
 **Matchflick**
 
+You need docker and docker compose to run the app
+Download here: https://www.docker.com/products/docker-desktop/ 
+
 🚀 In the folder where `docker-compose.yml` file is located, type and execute `docker-compose up`.
 This will automatically start the app.
 
