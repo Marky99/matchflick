@@ -31,9 +31,9 @@ public class Profile {
   private UUID id;
 
   @Column(unique = true)
-  private String username;
+  private final String username;
 
-  private String password;
+  private final String password;
 
   @CreationTimestamp
   private LocalDateTime createdAt;

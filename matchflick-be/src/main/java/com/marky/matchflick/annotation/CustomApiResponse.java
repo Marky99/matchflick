@@ -12,6 +12,7 @@ import org.springframework.core.annotation.AliasFor;
  * annotation
  * <p>
  * Uses {@link StandardErrorResponseBody} {@code value} and {@code message} are used to fill the
+ *
  * @ApiResponse annotation by its representative Aliases
  */
 @Target({ElementType.METHOD, ElementType.TYPE})

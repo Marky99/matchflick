@@ -38,5 +38,5 @@ public class Match {
 
   @OneToMany(mappedBy = "match", orphanRemoval = true, cascade = {CascadeType.REMOVE,
       CascadeType.PERSIST})
-  private List<ProfileMatch> profileMatches = new ArrayList<>();
+  private final List<ProfileMatch> profileMatches = new ArrayList<>();
 }

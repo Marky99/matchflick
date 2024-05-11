@@ -18,9 +18,9 @@ services:
 
   matchflick:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: matchflick
+      context: ..
+      dockerfile: matchflick-be/Dockerfile
+    container_name: matchflick-be
     restart: always
     ports:
       - '8080:8080'

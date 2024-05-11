@@ -29,5 +29,5 @@ public class Genre {
 
   @OneToMany(mappedBy = "genre", orphanRemoval = true, cascade = {CascadeType.REMOVE,
       CascadeType.PERSIST})
-  private List<MovieGenre> movieGenres = new ArrayList<>();
+  private final List<MovieGenre> movieGenres = new ArrayList<>();
 }
