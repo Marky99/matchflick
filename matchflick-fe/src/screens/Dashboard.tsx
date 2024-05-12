@@ -1,16 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {Header} from "../components/Header.tsx";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  TextField,
-  Typography
-} from "@mui/material";
+import {Table, TableBody, TableCell, TableRow, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import styled from "@mui/material/styles/styled";
 import {
@@ -32,6 +22,7 @@ import {
   Review
 } from "../utils/api/matchflickApi.ts";
 import {USERNAME} from "../utils/constants.ts";
+import {ReviewModal} from "../components/ReviewModal.tsx";
 
 interface StyledBoxProp {
   width: string;
@@ -49,31 +40,6 @@ const StyledHeaderText = styled(Typography)(() => ({
   fontWeight: "bold",
   textAlign: "center",
   marginTop: "2%"
-}));
-
-const StyledOverlay = styled(Dialog)(({theme}) => ({
-  '& .MuiPaper-root': {
-    borderRadius: "30px",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2),
-    width: '40%',
-  },
-}));
-
-const StyledTitle = styled(DialogTitle)({
-  textAlign: 'center',
-});
-
-const StyledTextInput = styled(TextField)(() => ({
-  width: '100%',
-  marginBottom: "5%",
-  marginTop: "2%"
-}));
-
-const StyledButtonContainer = styled('div')(({theme}) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  marginTop: theme.spacing(2),
 }));
 
 type ResponseType = GenreResponse[] | { title: string, score: number }[] | Match[];
@@ -112,11 +78,18 @@ export const Dashboard: FC = () => {
     const value = event.target.value;
     const newScore = parseInt(value, 10);
 
-    if (!isNaN(newScore) || value === '') {
-      setScore(value === '' ? 1 : (newScore > 10 ? parseInt(value[value.length - 1], 10) : (newScore === 0 ? 1 : newScore)));
+    if (value === '') {
+      setScore(1);
+    } else if (!isNaN(newScore)) {
+      if (newScore > 10) {
+        setScore(parseInt(value[value.length - 1], 10));
+      } else if (newScore === 0) {
+        setScore(1);
+      } else {
+        setScore(newScore);
+      }
     }
   };
-
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(event.target.value);
   };
@@ -182,49 +155,6 @@ export const Dashboard: FC = () => {
     );
   };
 
-  const ReviewModal = () => {
-    return (
-        lastReview != null && (
-            <StyledOverlay open={overlay}>
-              <StyledTitle>Leave a review on your last selection?</StyledTitle>
-              <StyledTitle>{lastReview.name}</StyledTitle>
-              <DialogContent>
-                <StyledTextInput
-                    label="Title of a review"
-                    id="name"
-                    variant="outlined"
-                    value={title}
-                    onChange={handleTitleChange}/>
-                <StyledTextInput
-                    label="7/10"
-                    id="score"
-                    variant="outlined"
-                    value={score}
-                    onChange={handleScoreChange}
-                    inputProps={{
-                      pattern: "[1-9]|10|[1-9][0-9]?",
-                      title: "Score must be a number from 1 to 10"
-                    }}/>
-                <StyledTextInput
-                    label="Review"
-                    id="review"
-                    variant="outlined"
-                    multiline
-                    rows={10}
-                    value={description}
-                    onChange={handleDescriptionChange}/>
-                <StyledButtonContainer>
-                  <StyledButton variant="outlined" color="error"
-                                onClick={handleSkip}>Skip</StyledButton>
-                  <StyledButton variant="contained" color="primary"
-                                onClick={handleConfirm}>Confirm</StyledButton>
-                </StyledButtonContainer>
-              </DialogContent>
-            </StyledOverlay>
-        )
-    );
-  };
-
   return (
       <StyledBackground>
         <Header/>
@@ -252,7 +182,18 @@ export const Dashboard: FC = () => {
           </StyledBox>
           <StyledButton onClick={handleLogout}>Logout</StyledButton>
         </Flexbox>
-        {ReviewModal()}
+        <ReviewModal
+            lastReview={lastReview}
+            overlay={overlay}
+            title={title}
+            score={score}
+            description={description}
+            handleTitleChange={handleTitleChange}
+            handleScoreChange={handleScoreChange}
+            handleDescriptionChange={handleDescriptionChange}
+            handleSkip={handleSkip}
+            handleConfirm={handleConfirm}
+        />
       </StyledBackground>
   );
 };

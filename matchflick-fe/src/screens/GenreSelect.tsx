@@ -1,13 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, Grid, styled, Typography} from "@mui/material";
-import {assignGenre, getAllGenres} from "../utils/api/matchflickApi.ts";
-
-interface Genre {
-  id: string;
-  name: string;
-  description: string;
-}
+import {assignGenre, GenericNameDescResponse, getAllGenres} from "../utils/api/matchflickApi.ts";
 
 const GradientBackground = styled(Grid)(() => ({
   backgroundImage: 'linear-gradient(to bottom, #565DFF, #343899)',
@@ -30,7 +24,7 @@ const StyledButton = styled(Button)(({selected}: { selected: boolean }) => ({
 export const GenreSelect: FC = () => {
   const navigate = useNavigate();
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [genres, setGenres] = useState<Genre[]>([]);
+  const [genres, setGenres] = useState<GenericNameDescResponse[]>([]);
 
   useEffect(() => {
     (async () => {

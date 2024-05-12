@@ -144,9 +144,7 @@ export const ActiveSession: FC = () => {
                 </SessionCard>
             )}
             {open && (
-                <>
-                  <MovieDetailsCard movie={movie} handleClose={handleClose}/>
-                </>
+                <MovieDetailsCard movie={movie} handleClose={handleClose}/>
             )}
           </SessionBox>
           {!match && (
